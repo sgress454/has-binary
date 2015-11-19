@@ -3,8 +3,6 @@ var hasBinary = require('./');
 var assert = require('better-assert');
 var fs = require('fs');
 
-var start = new Date();
-
 describe('has-binarydata', function(){
 
   it('should work with buffer', function(){
@@ -71,11 +69,5 @@ describe('has-binarydata', function(){
         assert(hasBinary(new Blob()));
      });
   }
-
-  it('should print the test time', function() {
-    var end = new Date();
-    var diff = end - start;
-    console.log('\ntest time: ' + diff + ' ms');
-  });
 
 });
