@@ -25,10 +25,10 @@ function hasBinary(data) {
   function _hasBinary(obj) {
     if (!obj) return false;
 
-    if ( (global.Buffer && global.Buffer.isBuffer && global.Buffer.isBuffer(obj)) ||
-         (global.ArrayBuffer && obj instanceof ArrayBuffer) ||
-         (global.Blob && obj instanceof Blob) ||
-         (global.File && obj instanceof File)
+    if ( (typeof global.Buffer === 'function' && global.Buffer.isBuffer && global.Buffer.isBuffer(obj)) ||
+         (typeof global.ArrayBuffer === 'function' && obj instanceof ArrayBuffer) ||
+         (typeof global.Blob === 'function' && obj instanceof Blob) ||
+         (typeof global.File === 'function' && obj instanceof File)
         ) {
       return true;
     }

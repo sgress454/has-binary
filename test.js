@@ -70,4 +70,12 @@ describe('has-binarydata', function(){
      });
   }
 
+  else {
+    it('should not crash if global Blob is not a function', function() {
+      global.Blob = [ 1, 2, 3 ];
+      hasBinary(global.Blob);
+      return;
+    });    
+  }
+
 });
