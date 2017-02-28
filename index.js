@@ -1,3 +1,4 @@
+/* global Blob File */
 
 /*
  * Module requirements.
@@ -20,22 +21,21 @@ module.exports = hasBinary;
  * @api public
  */
 
-function hasBinary(obj) {
-
+function hasBinary (obj) {
   if (!obj || typeof obj !== 'object') {
     return false;
   }
 
   if (isArray(obj)) {
     for (var i = 0, l = obj.length; i < l; i++) {
-       if (hasBinary(obj[i])) {
-         return true;
-       }
+      if (hasBinary(obj[i])) {
+        return true;
+      }
     }
     return false;
   }
 
-  if ( (global.Buffer && global.Buffer.isBuffer && global.Buffer.isBuffer(obj)) ||
+  if ((global.Buffer && global.Buffer.isBuffer && global.Buffer.isBuffer(obj)) ||
      (global.ArrayBuffer && obj instanceof ArrayBuffer) ||
      (global.Blob && obj instanceof Blob) ||
      (global.File && obj instanceof File)
@@ -44,7 +44,7 @@ function hasBinary(obj) {
   }
 
   // see: https://github.com/Automattic/has-binary/pull/4
-  if (obj.toJSON && 'function' == typeof obj.toJSON) {
+  if (obj.toJSON && typeof obj.toJSON === 'function') {
     obj = obj.toJSON();
   }
 
