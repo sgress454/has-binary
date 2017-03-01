@@ -29,6 +29,11 @@ describe('has-binarydata', function () {
     assert(hasBinary(ob));
   });
 
+  it('should work with an object whose toJSON() returns a buffer', function () {
+    var ob = {a: 'a', b: [], c: 1234, toJSON: function () { return new Buffer('abc'); }};
+    assert(hasBinary(ob));
+  });
+
   it('should work with null', function () {
     assert(!hasBinary(null));
   });
